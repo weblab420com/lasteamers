@@ -1,0 +1,2043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LA Steamers - Subscription Plans</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.9) 0%, rgba(247, 147, 30, 0.9) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23FF6B35" width="1200" height="600"/><circle fill="%23F7931E" cx="200" cy="150" r="100" opacity="0.3"/><circle fill="%23FFE66D" cx="800" cy="300" r="150" opacity="0.2"/><circle fill="%23FF6B35" cx="1000" cy="100" r="80" opacity="0.4"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 230, 109, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 107, 53, 0.4) 0%, transparent 50%),
+                linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            animation: backgroundMove 20s ease-in-out infinite;
+        }
+        
+        @keyframes backgroundMove {
+            0%, 100% { 
+                background: 
+                    radial-gradient(circle at 20% 30%, rgba(255, 230, 109, 0.3) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 70%, rgba(255, 107, 53, 0.4) 0%, transparent 50%);
+            }
+            50% { 
+                background: 
+                    radial-gradient(circle at 80% 20%, rgba(255, 230, 109, 0.4) 0%, transparent 50%),
+                    radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.3) 0%, transparent 50%);
+            }
+        }
+        
+        .hero-header {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo::before {
+            content: "🧽";
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        .language-menu {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .lang-btn {
+            padding: 8px 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn:hover, .lang-btn.active {
+            background: white;
+            color: #FF6B35;
+            transform: translateY(-2px);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 40px;
+        }
+        
+        .hero-badge {
+            background: rgba(255, 230, 109, 0.9);
+            color: #2C3E50;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .hero-section h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.2;
+        }
+        
+        .hero-tagline {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+        
+        .before-after-section {
+            position: absolute;
+            bottom: 100px;
+            right: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 20px;
+            width: 300px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .before-after-title {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .before-after-slider {
+            position: relative;
+            height: 150px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .before-image, .after-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .before-image {
+            background: linear-gradient(45deg, #8B4513 0%, #D2691E 100%);
+        }
+        
+        .after-image {
+            background: linear-gradient(45deg, #FFE4B5 0%, #FFFACD 100%);
+            clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
+            transition: clip-path 0.3s ease;
+        }
+        
+        .slider-handle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #FF6B35;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .slider-handle::before {
+            content: "⇄";
+            font-size: 1.2em;
+        }
+        
+        .main-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .main-btn {
+            padding: 20px 40px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: bold;
+        }
+        
+        .book-now {
+            background: #2ECC71;
+            color: white;
+        }
+        
+        .subscribe-btn {
+            background: #9B59B6;
+            color: white;
+        }
+        
+        .main-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .pricing-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #2C3E50;
+        }
+        
+        .price-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .price-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .price-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .price-card.featured {
+            border-color: #FF6B35;
+            background: linear-gradient(135deg, #FF6B35, #F7931E);
+            color: white;
+        }
+        
+        .plan-name {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .plan-price {
+            font-size: 2.5em;
+            color: #FF6B35;
+            margin-bottom: 10px;
+        }
+        
+        .featured .plan-price {
+            color: white;
+        }
+        
+        .plan-discount {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #27AE60;
+            margin-bottom: 20px;
+        }
+        
+        .featured .plan-discount {
+            color: #FFE66D;
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        
+        .plan-features li {
+            padding: 5px 0;
+            font-size: 1.1em;
+        }
+        
+        .plan-features li::before {
+            content: "✅ ";
+            margin-right: 8px;
+        }
+        
+        .choose-plan-btn {
+            background: #FF6B35;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.2em;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .featured .choose-plan-btn {
+            background: white;
+            color: #FF6B35;
+        }
+        
+        .choose-plan-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .calculator-section {
+            background: #2C3E50;
+            color: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+        
+        .calculator {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .service-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .service-item {
+            background: #34495E;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .service-item:hover {
+            background: #FF6B35;
+        }
+        
+        .service-item.selected {
+            border-color: #FFE66D;
+            background: #FF6B35;
+        }
+        
+        .calculator-results {
+            background: #ECF0F1;
+            color: #2C3E50;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .price-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+        
+        .price-option {
+            padding: 20px;
+            border-radius: 10px;
+            background: white;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #7F8C8D;
+            font-size: 1.1em;
+        }
+        
+        .current-price {
+            font-size: 1.5em;
+            color: #27AE60;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        
+        .subscription-price {
+            font-size: 1.3em;
+            color: #E74C3C;
+            font-weight: bold;
+        }
+        
+        .savings {
+            background: #27AE60;
+            color: white;
+            padding: 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .example-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+        
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .example-card {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 15px 30px;
+            background: rgba(255,255,255,0.2);
+            margin: 0 5px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            background: #FFE66D;
+            color: #2C3E50;
+        }
+        
+        .example-content {
+            display: none;
+        }
+        
+        .example-content.active {
+            display: grid;
+        }
+        
+        /* Services Section */
+        .services-section {
+            background: #f8f9fa;
+            padding: 60px 40px;
+            margin: 40px 0;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .service-3d {
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .service-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: #2C3E50;
+        }
+        
+        .service-sizes {
+            color: #7F8C8D;
+            margin-bottom: 10px;
+        }
+        
+        .service-price {
+            font-size: 1.5em;
+            color: #FF6B35;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .service-btn {
+            background: #FF6B35;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-bottom: 10px;
+            width: 80%;
+        }
+        
+        .learn-more-btn {
+            background: transparent;
+            color: #FF6B35;
+            border: 2px solid #FF6B35;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 80%;
+        }
+        
+        /* Before/After Gallery */
+        .before-after-gallery {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            margin: 40px 0;
+        }
+        
+        .gallery-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .gallery-slider {
+            position: relative;
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        .gallery-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .gallery-slide.active {
+            opacity: 1;
+        }
+        
+        .before-after-comparison {
+            display: flex;
+            height: 100%;
+        }
+        
+        .comparison-image {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .comparison-image.before {
+            background: linear-gradient(45deg, #8B4513 0%, #D2691E 100%);
+        }
+        
+        .comparison-image.after {
+            background: linear-gradient(45deg, #FFE4B5 0%, #FFFACD 100%);
+        }
+        
+        .image-label {
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        
+        .video-container {
+            height: 100%;
+            background: #2C3E50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .video-placeholder {
+            text-align: center;
+        }
+        
+        .play-button {
+            font-size: 4em;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .play-button:hover {
+            transform: scale(1.2);
+        }
+        
+        .gallery-dots {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .dot {
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+            background-color: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .dot.active, .dot:hover {
+            background-color: #FFE66D;
+        }
+        
+        /* Reviews Section */
+        .reviews-section {
+            background: white;
+            padding: 60px 40px;
+            margin: 40px 0;
+        }
+        
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .review-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .reviewer-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #FF6B35;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 0 auto 15px;
+        }
+        
+        .review-card h4 {
+            margin-bottom: 10px;
+            color: #2C3E50;
+        }
+        
+        .stars {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        /* Instagram Section */
+        .instagram-section {
+            background: #f8f9fa;
+            padding: 60px 40px;
+            margin: 40px 0;
+        }
+        
+        .instagram-feed {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .insta-post {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .insta-image {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .instagram-promo {
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        /* Service Areas */
+        .service-areas {
+            background: white;
+            padding: 60px 40px;
+            margin: 40px 0;
+        }
+        
+        .areas-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .map-placeholder {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+        }
+        
+        .area-zones {
+            margin-top: 30px;
+        }
+        
+        .zone {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        
+        .zone.basic {
+            background: rgba(46, 204, 113, 0.1);
+        }
+        
+        .zone.premium {
+            background: rgba(155, 89, 182, 0.1);
+        }
+        
+        .zone.excluded {
+            background: rgba(231, 76, 60, 0.1);
+        }
+        
+        .zone-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .zone.basic .zone-dot {
+            background: #2ECC71;
+        }
+        
+        .zone.premium .zone-dot {
+            background: #9B59B6;
+        }
+        
+        .zone.excluded .zone-dot {
+            background: #E74C3C;
+        }
+        
+        .areas-info h3 {
+            color: #2C3E50;
+            margin-bottom: 15px;
+        }
+        
+        .areas-info ul {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .areas-info li {
+            padding: 5px 0;
+        }
+        
+        .zip-checker {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        .zip-input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1em;
+        }
+        
+        /* Partner Section */
+        .partner-section {
+            background: #2C3E50;
+            color: white;
+            padding: 60px 40px;
+            margin: 40px 0;
+        }
+        
+        .partner-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            align-items: center;
+        }
+        
+        .partner-info h3 {
+            margin-bottom: 20px;
+        }
+        
+        .partner-info ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .partner-info li {
+            padding: 5px 0;
+        }
+        
+        .partner-cta button {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
+            color: white;
+            padding: 60px 0 20px;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+        
+        .footer-section h4 {
+            margin-bottom: 20px;
+            color: #FFE66D;
+            font-size: 1.3em;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            padding: 5px 0;
+        }
+        
+        .footer-section a {
+            color: #BDC3C7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: #FFE66D;
+        }
+        
+        .subscription-benefits {
+            background: rgba(255, 230, 109, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        
+        .subscription-benefits p {
+            margin: 5px 0;
+            color: #FFE66D;
+        }
+        
+        .contact-info p {
+            margin: 8px 0;
+            color: #BDC3C7;
+        }
+        
+        .contact-info strong {
+            color: #FFE66D;
+        }
+        
+        .contact-info a {
+            color: white;
+            font-weight: bold;
+        }
+        
+        .emergency-contact {
+            background: rgba(231, 76, 60, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border-left: 4px solid #E74C3C;
+        }
+        
+        .emergency-contact p {
+            margin: 5px 0;
+        }
+        
+        .emergency-contact a {
+            color: #FFE66D;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .review-promo {
+            background: rgba(155, 89, 182, 0.2);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
+        .review-promo p {
+            color: #FFE66D;
+            margin: 0;
+        }
+        
+        /* Footer Areas */
+        .footer-areas {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px auto;
+            max-width: 1200px;
+        }
+        
+        .footer-areas h4 {
+            color: #FFE66D;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .areas-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .area-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .area-label {
+            font-weight: bold;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            min-width: 100px;
+        }
+        
+        .area-label.main {
+            background: #27AE60;
+            color: white;
+        }
+        
+        .area-label.premium {
+            background: #9B59B6;
+            color: white;
+        }
+        
+        /* Footer Legal */
+        .footer-legal {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px auto;
+            max-width: 1200px;
+        }
+        
+        .footer-legal h4 {
+            color: #FFE66D;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .term-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #FF6B35;
+        }
+        
+        .term-item strong {
+            color: #FFE66D;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .term-item p {
+            color: #BDC3C7;
+            margin: 0;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+        
+        /* Newsletter */
+        .newsletter-section {
+            background: rgba(255, 107, 53, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px auto;
+            max-width: 600px;
+        }
+        
+        .newsletter-section h4 {
+            color: #FFE66D;
+            margin-bottom: 10px;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            background: white;
+        }
+        
+        .newsletter-btn {
+            background: #FF6B35;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-btn:hover {
+            background: #E55A2B;
+            transform: translateY(-2px);
+        }
+        
+        .newsletter-note {
+            color: #BDC3C7;
+            margin: 10px 0 0;
+        }
+        
+        /* Footer Bottom */
+        .footer-bottom {
+            border-top: 2px solid #34495E;
+            padding-top: 30px;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .social-link.instagram:hover {
+            background: #E4405F;
+            transform: translateY(-3px);
+        }
+        
+        .social-link.facebook:hover {
+            background: #1877F2;
+            transform: translateY(-3px);
+        }
+        
+        .social-link.twitter:hover {
+            background: #1DA1F2;
+            transform: translateY(-3px);
+        }
+        
+        .social-link.linkedin:hover {
+            background: #0A66C2;
+            transform: translateY(-3px);
+        }
+        
+        .social-link.yelp:hover {
+            background: #FF1A1A;
+            transform: translateY(-3px);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #BDC3C7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .footer-links a:hover {
+            color: #FFE66D;
+        }
+        
+        .copyright {
+            margin-bottom: 25px;
+        }
+        
+        .copyright p {
+            margin: 5px 0;
+            color: #BDC3C7;
+        }
+        
+        .copyright p:first-child {
+            color: white;
+            font-size: 1.1em;
+        }
+        
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            background: rgba(255, 230, 109, 0.2);
+            color: #FFE66D;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            border: 1px solid rgba(255, 230, 109, 0.3);
+        }
+        
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .close:hover {
+            background: #FF6B35;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        #modalTitle {
+            color: #2C3E50;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .service-features h3 {
+            color: #FF6B35;
+            margin-bottom: 15px;
+            margin-top: 25px;
+        }
+        
+        .service-features ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .service-features li {
+            padding: 8px 0;
+            font-size: 1.1em;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5em;
+            }
+            
+            .hero-header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .hero-content {
+                padding: 40px 20px;
+            }
+            
+            .hero-tagline {
+                font-size: 1.2em;
+            }
+            
+            .main-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .price-comparison {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .instagram-feed {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .areas-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .partner-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .before-after-section {
+                position: static;
+                width: 90%;
+                margin: 30px auto 0;
+            }
+            
+            .language-menu {
+                justify-content: center;
+            }
+            
+            .zip-checker {
+                flex-direction: column;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 20px;
+            }
+            
+            .service-btn, .learn-more-btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+            
+            /* Footer Mobile Styles */
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .areas-list {
+                text-align: center;
+            }
+            
+            .area-group {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .terms-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .social-links {
+                gap: 10px;
+            }
+            
+            .social-link {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .trust-badges {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .badge {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <!-- Header with Logo and Language Menu -->
+            <div class="hero-header">
+                <a href="#" class="logo">LA STEAMERS</a>
+                <div class="language-menu">
+                    <a href="#" class="lang-btn active" onclick="switchLanguage('ENG')">ENG</a>
+                    <a href="#" class="lang-btn" onclick="switchLanguage('ESP')">ESP</a>
+                    <a href="#" class="lang-btn" onclick="switchLanguage('UA')">UA</a>
+                </div>
+            </div>
+            
+            <!-- Hero Content -->
+            <div class="hero-content">
+                <div class="hero-badge">
+                    ⭐ Trusted by 1111+ Celebrities ⭐
+                </div>
+                
+                <h1>Los Angeles<br>Steam Cleaning</h1>
+                
+                <p class="hero-tagline">
+                    Professional furniture and carpet cleaning with DOUBLE savings!<br>
+                    Our prices are already 50% below market, subscriptions give you EVEN MORE discounts!
+                </p>
+                
+                <div class="main-buttons">
+                    <a href="#book" class="main-btn book-now">📞 Book Now</a>
+                    <a href="#subscribe" class="main-btn subscribe-btn">⭐ Subscribe & Save</a>
+                </div>
+            </div>
+            
+            <!-- Before/After Interactive Section -->
+            <div class="before-after-section">
+                <div class="before-after-title">See the Difference!</div>
+                <div class="before-after-slider" onclick="toggleBeforeAfter()">
+                    <div class="before-image"></div>
+                    <div class="after-image" id="after-image"></div>
+                    <div class="slider-handle"></div>
+                </div>
+                <p style="font-size: 0.9em; margin-top: 10px; text-align: center;">
+                    Click to see Before → After
+                </p>
+            </div>
+        </div>
+
+        <!-- Pricing Plans -->
+        <div class="pricing-section" id="subscribe">
+            <h2 class="section-title">💰 Choose Your Plan</h2>
+            
+            <div class="price-comparison">
+                <div class="price-card">
+                    <div class="plan-name">BASIC</div>
+                    <div class="plan-price">$50<span style="font-size: 0.5em;">/month</span></div>
+                    <div class="plan-discount">+5% discount</div>
+                    <ul class="plan-features">
+                        <li>Discount on all services</li>
+                        <li>Priority booking</li>
+                        <li>Cancel anytime</li>
+                        <li>Pays for itself in 3 orders</li>
+                    </ul>
+                    <button class="choose-plan-btn">Subscribe Now</button>
+                </div>
+                
+                <div class="price-card">
+                    <div class="plan-name">STANDARD</div>
+                    <div class="plan-price">$150<span style="font-size: 0.5em;">/month</span></div>
+                    <div class="plan-discount">+10% discount</div>
+                    <ul class="plan-features">
+                        <li>Everything from BASIC</li>
+                        <li>Personal manager</li>
+                        <li>Flexible scheduling</li>
+                        <li>For active customers</li>
+                    </ul>
+                    <button class="choose-plan-btn">Subscribe Now</button>
+                </div>
+                
+                <div class="price-card featured">
+                    <div class="plan-name">⭐ PREMIUM</div>
+                    <div class="plan-price">$300<span style="font-size: 0.5em;">/month</span></div>
+                    <div class="plan-discount">+20% discount</div>
+                    <ul class="plan-features">
+                        <li>Everything from STANDARD</li>
+                        <li>VIP service</li>
+                        <li>Emergency calls</li>
+                        <li>Maximum savings</li>
+                    </ul>
+                    <button class="choose-plan-btn">🔥 Subscribe Now</button>
+                </div>
+                
+                <div class="price-card">
+                    <div class="plan-name">VIP</div>
+                    <div class="plan-price">$500<span style="font-size: 0.5em;">/month</span></div>
+                    <div class="plan-discount">+50% discount</div>
+                    <ul class="plan-features">
+                        <li>Maximum discount</li>
+                        <li>Elite service</li>
+                        <li>24/7 support</li>
+                        <li>Exclusive terms</li>
+                    </ul>
+                    <button class="choose-plan-btn">Subscribe Now</button>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 30px; font-size: 0.9em; color: #7F8C8D;">
+                Minimum order $100. By paying for the service, you agree to our terms and conditions.
+            </p>
+        </div>
+
+        <!-- Services Categories -->
+        <div class="services-section" id="book">
+            <h2 class="section-title">🛋️ What We Clean</h2>
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 40px; color: #7F8C8D;">
+                Check dimensions → choose your option
+            </p>
+            
+            <div class="services-grid">
+                <div class="service-card" onclick="openServiceModal('couch')">
+                    <div class="service-3d">🛋️</div>
+                    <h3>Couch</h3>
+                    <p class="service-sizes">Standard / L-Shape / Large</p>
+                    <p class="service-price">From $150</p>
+                    <button class="service-btn">Book Now</button>
+                    <button class="learn-more-btn" onclick="event.stopPropagation(); openServiceInfo('couch')">Learn More</button>
+                </div>
+                
+                <div class="service-card" onclick="openServiceModal('carpet')">
+                    <div class="service-3d">🏠</div>
+                    <h3>Carpet</h3>
+                    <p class="service-sizes">1-3 Rooms</p>
+                    <p class="service-price">From $165</p>
+                    <button class="service-btn">Book Now</button>
+                    <button class="learn-more-btn" onclick="event.stopPropagation(); openServiceInfo('carpet')">Learn More</button>
+                </div>
+                
+                <div class="service-card" onclick="openServiceModal('chair')">
+                    <div class="service-3d">🪑</div>
+                    <h3>Chair</h3>
+                    <p class="service-sizes">1-50 Chairs</p>
+                    <p class="service-price">From $25</p>
+                    <button class="service-btn">Book Now</button>
+                    <button class="learn-more-btn" onclick="event.stopPropagation(); openServiceInfo('chair')">Learn More</button>
+                </div>
+                
+                <div class="service-card" onclick="openServiceModal('armchair')">
+                    <div class="service-3d">🛋️</div>
+                    <h3>Armchair</h3>
+                    <p class="service-sizes">Single / Multiple</p>
+                    <p class="service-price">From $50</p>
+                    <button class="service-btn">Book Now</button>
+                    <button class="learn-more-btn" onclick="event.stopPropagation(); openServiceInfo('armchair')">Learn More</button>
+                </div>
+                
+                <div class="service-card" onclick="openServiceModal('dining-chair')">
+                    <div class="service-3d">🪑</div>
+                    <h3>Dining Chair</h3>
+                    <p class="service-sizes">1-10 Chairs</p>
+                    <p class="service-price">From $33</p>
+                    <button class="service-btn">Book Now</button>
+                    <button class="learn-more-btn" onclick="event.stopPropagation(); openServiceInfo('dining-chair')">Learn More</button>
+                </div>
+                
+                <div class="service-card" onclick="openServiceModal('area-rug')">
+                    <div class="service-3d">🔲</div>
+                    <h3>Area Rug</h3>
+                    <p class="service-sizes">6x8 / 8x10 / 10x12</p>
+                    <p class="service-price">From $88</p>
+                    <button class="service-btn">Book Now</button>
+                    <button class="learn-more-btn" onclick="event.stopPropagation(); openServiceInfo('area-rug')">Learn More</button>
+                </div>
+                
+                <div class="service-card" onclick="openServiceModal('headboard')">
+                    <div class="service-3d">🛏️</div>
+                    <h3>Headboard</h3>
+                    <p class="service-sizes">Twin / Queen / King</p>
+                    <p class="service-price">From $140</p>
+                    <button class="service-btn">Book Now</button>
+                    <button class="learn-more-btn" onclick="event.stopPropagation(); openServiceInfo('headboard')">Learn More</button>
+                </div>
+                
+                <div class="service-card" onclick="openServiceModal('mattress')">
+                    <div class="service-3d">🛏️</div>
+                    <h3>Mattress</h3>
+                    <p class="service-sizes">Twin / Queen / King</p>
+                    <p class="service-price">From $140</p>
+                    <button class="service-btn">Book Now</button>
+                    <button class="learn-more-btn" onclick="event.stopPropagation(); openServiceInfo('mattress')">Learn More</button>
+                </div>
+                
+                <div class="service-card" onclick="openServiceModal('ottoman')">
+                    <div class="service-3d">🔳</div>
+                    <h3>Ottoman</h3>
+                    <p class="service-sizes">1-3 Ottomans</p>
+                    <p class="service-price">From $70</p>
+                    <button class="service-btn">Book Now</button>
+                    <button class="learn-more-btn" onclick="event.stopPropagation(); openServiceInfo('ottoman')">Learn More</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Before/After Gallery -->
+        <div class="before-after-gallery">
+            <h2 class="section-title">🔥 Before / After</h2>
+            
+            <div class="gallery-container">
+                <div class="gallery-slider">
+                    <div class="gallery-slide active">
+                        <div class="before-after-comparison">
+                            <div class="comparison-image before">
+                                <div class="image-label">Before</div>
+                            </div>
+                            <div class="comparison-image after">
+                                <div class="image-label">After</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-slide">
+                        <div class="video-container">
+                            <div class="video-placeholder">
+                                <div class="play-button">▶️</div>
+                                <p>Real cleaning in action</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-dots">
+                    <span class="dot active" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="#book" class="main-btn book-now">Book Now</a>
+            </div>
+        </div>
+
+        <!-- Customer Reviews -->
+        <div class="reviews-section">
+            <h2 class="section-title">⭐ Expressing Gratitude for Every Review</h2>
+            
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="reviewer-avatar">NT</div>
+                    <h4>NICKTUCKER</h4>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Incredible service! My couch looks brand new. These guys are true professionals."</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="reviewer-avatar">MS</div>
+                    <h4>MONIECE_SLAUGHTER</h4>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Best cleaning service in LA! Fast, efficient, and the results speak for themselves."</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="reviewer-avatar">JD</div>
+                    <h4>JENNIFER_DAVIS</h4>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Amazing work on our home theater seats. Will definitely use again!"</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="reviewer-avatar">RW</div>
+                    <h4>ROBERT_WILSON</h4>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Professional team, great prices, perfect results. Highly recommended!"</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="main-btn subscribe-btn">See More Reviews</button>
+            </div>
+        </div>
+
+        <!-- Instagram Integration -->
+        <div class="instagram-section">
+            <h2 class="section-title">📸 Follow us on Instagram</h2>
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 30px;">
+                @la.steamers
+            </p>
+            
+            <div class="instagram-feed">
+                <div class="insta-post">
+                    <div class="insta-image">📷</div>
+                    <p>Before & After magic ✨</p>
+                </div>
+                <div class="insta-post">
+                    <div class="insta-image">🎥</div>
+                    <p>Customer testimonial</p>
+                </div>
+                <div class="insta-post">
+                    <div class="insta-image">🛋️</div>
+                    <p>Couch transformation</p>
+                </div>
+                <div class="insta-post">
+                    <div class="insta-image">⭐</div>
+                    <p>5-star review</p>
+                </div>
+            </div>
+            
+            <div class="instagram-promo">
+                <h3>🎬 Leave a video review → get a discount!</h3>
+                <p>Share your experience in Instagram Stories and get 10% off your next order</p>
+                <button class="main-btn book-now">Follow @la.steamers</button>
+            </div>
+        </div>
+
+        <!-- Service Areas -->
+        <div class="service-areas">
+            <h2 class="section-title">📍 Service Areas</h2>
+            
+            <div class="areas-content">
+                <div class="areas-map">
+                    <div class="map-placeholder">
+                        <h3>🗺️ Los Angeles Area</h3>
+                        <div class="area-zones">
+                            <div class="zone basic">
+                                <span class="zone-dot"></span>
+                                <span>LA, Hollywood</span>
+                            </div>
+                            <div class="zone premium">
+                                <span class="zone-dot"></span>
+                                <span>Dana Point, Malibu</span>
+                            </div>
+                            <div class="zone excluded">
+                                <span class="zone-dot"></span>
+                                <span>Excluded: Compton</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="areas-info">
+                    <h3>🎯 Main Areas</h3>
+                    <ul>
+                        <li>✅ Los Angeles</li>
+                        <li>✅ Hollywood</li>
+                        <li>✅ Beverly Hills</li>
+                        <li>✅ Santa Monica</li>
+                    </ul>
+                    
+                    <h3>💎 Premium Areas</h3>
+                    <ul>
+                        <li>⭐ Dana Point</li>
+                        <li>⭐ Malibu</li>
+                        <li>⭐ Newport Beach</li>
+                    </ul>
+                    
+                    <div class="zip-checker">
+                        <input type="text" placeholder="Enter your ZIP code" class="zip-input">
+                        <button class="main-btn book-now">Check Your ZIP Code</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Partner System Teaser -->
+        <div class="partner-section">
+            <h2 class="section-title">🤝 Work with LA Steamers</h2>
+            <div class="partner-content">
+                <div class="partner-info">
+                    <h3>Coming Soon — Partner Network Expansion</h3>
+                    <p>We are planning to expand our partner network. If you are a professional technician or cleaning company owner, you will soon have the opportunity to join our team.</p>
+                    <ul>
+                        <li>✅ Steady flow of orders</li>
+                        <li>✅ Proven payment system</li>
+                        <li>✅ Training and support</li>
+                        <li>✅ Flexible work schedule</li>
+                    </ul>
+                </div>
+                <div class="partner-cta">
+                    <button class="main-btn subscribe-btn" disabled>Apply as Partner<br><small>(Coming Soon)</small></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calculator Section -->
+        <div class="calculator-section">
+            <div class="calculator">
+                <h2 class="section-title">🧮 Savings Calculator</h2>
+                <p style="text-align: center; font-size: 1.2em; margin-bottom: 30px;">
+                    Select services and see how much you'll save!
+                </p>
+                
+                <div class="service-selector">
+                    <div class="service-item" onclick="toggleService(this, 165)">
+                        <h3>🛋️ Couch L-Shape 3-Seat</h3>
+                        <p>Was: $330 → <strong>$165</strong></p>
+                    </div>
+                    <div class="service-item" onclick="toggleService(this, 88)">
+                        <h3>🏠 Area Rug 6x8</h3>
+                        <p>Was: $176 → <strong>$88</strong></p>
+                    </div>
+                    <div class="service-item" onclick="toggleService(this, 50)">
+                        <h3>🪑 1 Armchair</h3>
+                        <p>Was: $100 → <strong>$50</strong></p>
+                    </div>
+                    <div class="service-item" onclick="toggleService(this, 150)">
+                        <h3>🛏️ Queen Mattress</h3>
+                        <p>Was: $300 → <strong>$150</strong></p>
+                    </div>
+                </div>
+                
+                <div class="calculator-results">
+                    <div class="price-breakdown">
+                        <div class="price-option">
+                            <h3>No Subscription</h3>
+                            <div class="current-price" id="no-subscription">$0</div>
+                            <p>Already 50% savings!</p>
+                        </div>
+                        <div class="price-option">
+                            <h3>BASIC (+5%)</h3>
+                            <div class="subscription-price" id="basic-price">$0</div>
+                            <div class="savings" id="basic-savings">Savings: $0</div>
+                        </div>
+                        <div class="price-option">
+                            <h3>STANDARD (+10%)</h3>
+                            <div class="subscription-price" id="standard-price">$0</div>
+                            <div class="savings" id="standard-savings">Savings: $0</div>
+                        </div>
+                        <div class="price-option">
+                            <h3>VIP (+50%)</h3>
+                            <div class="subscription-price" id="vip-price">$0</div>
+                            <div class="savings" id="vip-savings">Savings: $0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Examples Section -->
+        <div class="example-section">
+            <h2 class="section-title">💡 Real Savings Examples</h2>
+            
+            <div class="tabs">
+                <div class="tab active" onclick="showExample(1)">Johnson Family</div>
+                <div class="tab" onclick="showExample(2)">Malibu Office</div>
+                <div class="tab" onclick="showExample(3)">Hollywood Restaurant</div>
+            </div>
+            
+            <!-- Example 1: Johnson Family -->
+            <div class="example-grid example-content active" id="example-1">
+                <div class="example-card">
+                    <h3>👨‍👩‍👧‍👦 Johnson Family</h3>
+                    <p><strong>Order:</strong> Couch + 2 armchairs + rug</p>
+                    <p><strong>No subscription:</strong> $303</p>
+                    <p><strong>With BASIC:</strong> $288</p>
+                    <p><strong>Savings per visit:</strong> $15</p>
+                    <p><strong>With 4 visits per year:</strong></p>
+                    <p>💰 Savings $60 vs subscription $50 = <strong>+$10 profit!</strong></p>
+                </div>
+                
+                <div class="example-card">
+                    <h3>📊 Annual Savings</h3>
+                    <p>Market price: <span style="text-decoration: line-through;">$1,212</span></p>
+                    <p>Our prices: $606 <span style="color: #FFE66D;">(-50%)</span></p>
+                    <p>With subscription: $576 <span style="color: #FFE66D;">(-5%)</span></p>
+                    <p><strong>Total savings: $636 per year!</strong></p>
+                </div>
+            </div>
+            
+            <!-- Example 2: Malibu Office -->
+            <div class="example-grid example-content" id="example-2">
+                <div class="example-card">
+                    <h3>🏢 Malibu Office</h3>
+                    <p><strong>Order:</strong> 10 office chairs + 2 couches + rug</p>
+                    <p><strong>No subscription:</strong> $1,063</p>
+                    <p><strong>With PREMIUM:</strong> $850</p>
+                    <p><strong>Savings per visit:</strong> $213</p>
+                    <p><strong>With 2 cleanings per year:</strong></p>
+                    <p>💰 Savings $426 vs subscription $300 = <strong>+$126 profit!</strong></p>
+                </div>
+                
+                <div class="example-card">
+                    <h3>📊 Business Savings</h3>
+                    <p>Market price: <span style="text-decoration: line-through;">$2,126</span></p>
+                    <p>Our prices: $1,063 <span style="color: #FFE66D;">(-50%)</span></p>
+                    <p>With PREMIUM: $850 <span style="color: #FFE66D;">(-20%)</span></p>
+                    <p><strong>Total savings: $1,276 per year!</strong></p>
+                </div>
+            </div>
+            
+            <!-- Example 3: Hollywood Restaurant -->
+            <div class="example-grid example-content" id="example-3">
+                <div class="example-card">
+                    <h3>🍽️ Hollywood Restaurant</h3>
+                    <p><strong>Order:</strong> 50 chairs + 10 couches + rugs (3 rooms)</p>
+                    <p><strong>No subscription:</strong> $2,263</p>
+                    <p><strong>With VIP:</strong> $1,132</p>
+                    <p><strong>Savings per visit:</strong> $1,131</p>
+                    <p><strong>With 3 cleanings per year:</strong></p>
+                    <p>💰 Savings $3,393 vs subscription $500 = <strong>+$2,893 profit!</strong></p>
+                </div>
+                
+                <div class="example-card">
+                    <h3>📊 Commercial Savings</h3>
+                    <p>Market price: <span style="text-decoration: line-through;">$6,789</span></p>
+                    <p>Our prices: $2,263 <span style="color: #FFE66D;">(-50%)</span></p>
+                    <p>With VIP: $1,132 <span style="color: #FFE66D;">(-50%)</span></p>
+                    <p><strong>Total savings: $5,657 per year!</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Дождемся загрузки DOM
+        document.addEventListener('DOMContentLoaded', function() {
+            // Инициализация
+            updateCalculator();
+            
+            // Newsletter subscription
+            const newsletterBtn = document.querySelector('.newsletter-btn');
+            if (newsletterBtn) {
+                newsletterBtn.addEventListener('click', subscribeNewsletter);
+            }
+            
+            const newsletterInput = document.querySelector('.newsletter-input');
+            if (newsletterInput) {
+                newsletterInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        subscribeNewsletter();
+                    }
+                });
+            }
+        });
+        
+        let selectedServices = [];
+        
+        function toggleService(element, price) {
+            element.classList.toggle('selected');
+            
+            if (element.classList.contains('selected')) {
+                selectedServices.push(price);
+            } else {
+                selectedServices = selectedServices.filter(p => p !== price);
+            }
+            
+            updateCalculator();
+        }
+        
+        function updateCalculator() {
+            const total = selectedServices.reduce((sum, price) => sum + price, 0);
+            
+            const noSubElement = document.getElementById('no-subscription');
+            if (noSubElement) {
+                noSubElement.textContent = `${total}`;
+            }
+            
+            const basicPrice = Math.round(total * 0.95);
+            const standardPrice = Math.round(total * 0.9);
+            const vipPrice = Math.round(total * 0.5);
+            
+            const basicPriceElement = document.getElementById('basic-price');
+            const standardPriceElement = document.getElementById('standard-price');
+            const vipPriceElement = document.getElementById('vip-price');
+            
+            if (basicPriceElement) basicPriceElement.textContent = `${basicPrice}`;
+            if (standardPriceElement) standardPriceElement.textContent = `${standardPrice}`;
+            if (vipPriceElement) vipPriceElement.textContent = `${vipPrice}`;
+            
+            const basicSavingsElement = document.getElementById('basic-savings');
+            const standardSavingsElement = document.getElementById('standard-savings');
+            const vipSavingsElement = document.getElementById('vip-savings');
+            
+            if (basicSavingsElement) basicSavingsElement.textContent = `Экономия: ${total - basicPrice}`;
+            if (standardSavingsElement) standardSavingsElement.textContent = `Экономия: ${total - standardPrice}`;
+            if (vipSavingsElement) vipSavingsElement.textContent = `Экономия: ${total - vipPrice}`;
+        }
+        
+        function showExample(num) {
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Add active class to clicked tab - используем более надежный селектор
+            const activeTab = document.querySelectorAll('.tab')[num - 1];
+            if (activeTab) {
+                activeTab.classList.add('active');
+            }
+            
+            // Hide all example content
+            const allContent = document.querySelectorAll('.example-content');
+            allContent.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Show selected example content
+            const selectedContent = document.getElementById(`example-${num}`);
+            if (selectedContent) {
+                selectedContent.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
