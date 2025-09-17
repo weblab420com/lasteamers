@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import { Star, Phone, Mail, MapPin, Instagram, Check, Users, Shield, Droplets, Heart } from 'lucide-react';
+import { Star, Phone, Mail, MapPin, Instagram, Check, Users, Shield, Droplets, Heart, Menu, X } from 'lucide-react';
 import './App.css';
 import logo from './logo_lasteamers.svg';
 import backgroundImage from './background_mainscreen.png';
-import armchairImage from './armchair.svg';
+import armchairImage from './armchair.png';
 import celebrityImage from './celebrity.svg';
 
 const App = () => {
   const [currentPlan, setCurrentPlan] = useState('monthly');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   const services = [
     {
@@ -102,13 +107,33 @@ const App = () => {
           <div className="nav-logo">
             <img src={logo} alt="LA Steamers" className="logo-image" />
           </div>
+          
+          {/* Desktop Menu */}
+          <div className="nav-links desktop-menu">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#plans">Plans</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#contact">Contact</a>
+          </div>
+          
           <div className="nav-right">
             <span className="language-toggle">ENG</span>
-            <div className="menu-icon">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
+            <button className="mobile-menu-btn" onClick={toggleMobileMenu}>
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+        
+        {/* Mobile Menu */}
+        <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
+          <div className="mobile-menu-content">
+            <a href="#home" onClick={toggleMobileMenu}>Home</a>
+            <a href="#services" onClick={toggleMobileMenu}>Services</a>
+            <a href="#plans" onClick={toggleMobileMenu}>Plans</a>
+            <a href="#reviews" onClick={toggleMobileMenu}>Reviews</a>
+            <a href="#contact" onClick={toggleMobileMenu}>Contact</a>
+            <button className="mobile-cta-btn">Book Now</button>
           </div>
         </div>
       </nav>
